@@ -6,6 +6,7 @@ public class Main {
         app.run();
     }
 }
+
 class Quote{
     int id;
     String wise;
@@ -31,7 +32,9 @@ class App{
             String cmd = scanner.nextLine();
             if(cmd.equals("종료")){
                 break;
-            } else if (cmd.equals("등록")) {
+            }
+
+            else if (cmd.equals("등록")) {
                 System.out.print("명언 : ");
                 String wise = scanner.nextLine();
 
@@ -42,7 +45,9 @@ class App{
 
                 System.out.println((count + 1) + "번 명언이 등록되었습니다.");
                 count++;
-            }else if (cmd.equals("목록")) {
+            }
+
+            else if (cmd.equals("목록")) {
                 System.out.println("번호 / 작가 / 명언");
                 System.out.println("----------------------");
                 for (int i = count - 1; i >= 0; i--) {
@@ -51,18 +56,21 @@ class App{
                         System.out.println(quote.id + " / " + quote.author + " / " + quote.wise);
                     }
                 }
-            }else if (cmd.startsWith("삭제?id=")) {
+            }
+
+            else if (cmd.startsWith("삭제?id=")) {
                 String idStr = cmd.substring(6);
                 int id = Integer.parseInt(idStr);
 
                 if (id > 0 && id <= count && quotes[id - 1] != null) {
-                    // 삭제 로직
                     quotes[id - 1] = null;
                     System.out.println(id + "번 명언이 삭제되었습니다.");
                 } else {
                     System.out.println(id + "번 명언은 존재하지 않습니다.");
                 }
-            }else if(cmd.startsWith("수정?id=")){
+            }
+
+            else if(cmd.startsWith("수정?id=")){
                 String idStr = cmd.substring(6);
                 int id = Integer.parseInt(idStr);
 
@@ -81,6 +89,10 @@ class App{
                 }else{
                     System.out.println(id + "번 명언은 존재하지 않습니다.");
                 }
+            }
+
+            else{
+                System.out.println("올바른 명령이 아닙니다. 다시 입력하세요.");
             }
         }
         scanner.close();
