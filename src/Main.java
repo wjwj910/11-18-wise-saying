@@ -47,17 +47,17 @@ class App{
                 System.out.println("----------------------");
                 for (int i = count - 1; i >= 0; i--) {
                     Quote quote = quotes[i];
-                    System.out.println(quote.id + " / " + quote.author + " / " + quote.wise);
+                    if(quote != null){
+                        System.out.println(quote.id + " / " + quote.author + " / " + quote.wise);
+                    }
                 }
-            }else if (cmd.startsWith("삭제?id=")){
+            }else if (cmd.startsWith("삭제?id=")) {
                 String idStr = cmd.substring(6);
                 int id = Integer.parseInt(idStr);
-                if (id > 0 && id <= count) {
-                    for (int i = id - 1; i < count - 1; i++) {
-                        quotes[i] = quotes[i + 1];
-                    }
-                    quotes[count - 1] = null;
-                    count--;
+
+                if (id > 0 && id <= count && quotes[id - 1] != null) {
+                    // 삭제 로직
+                    quotes[id - 1] = null;
                     System.out.println(id + "번 명언이 삭제되었습니다.");
                 } else {
                     System.out.println(id + "번 명언은 존재하지 않습니다.");
