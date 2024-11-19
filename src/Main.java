@@ -62,6 +62,25 @@ class App{
                 } else {
                     System.out.println(id + "번 명언은 존재하지 않습니다.");
                 }
+            }else if(cmd.startsWith("수정?id=")){
+                String idStr = cmd.substring(6);
+                int id = Integer.parseInt(idStr);
+
+                if(id > 0 && id <= count && quotes[id - 1] != null) {
+                    Quote quoteToEdit = quotes[id - 1];
+                    System.out.println("명언(기존) : " + quoteToEdit.wise);
+                    System.out.print("명언 : ");
+                    String newWise = scanner.nextLine();
+
+                    System.out.println("작가(기존) : " + quoteToEdit.author);
+                    System.out.print("작가 : ");
+                    String newAuthor = scanner.nextLine();
+
+                    quoteToEdit.wise = newWise;
+                    quoteToEdit.author = newAuthor;
+                }else{
+                    System.out.println(id + "번 명언은 존재하지 않습니다.");
+                }
             }
         }
         scanner.close();
