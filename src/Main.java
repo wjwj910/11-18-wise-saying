@@ -41,7 +41,7 @@ class App {
 
                 System.out.println("%d번 명언이 등록되었습니다.".formatted(id));
 
-            } else if(cmd.equals("목록")){
+            } else if (cmd.equals("목록")){
                 System.out.println("번호 / 작가 / 명언");
                 System.out.println("----------------------");
                 for(int i = lastId; i >= 0;i--){
@@ -49,6 +49,34 @@ class App {
                     if(wiseSaying != null){
                         System.out.println(wiseSaying.id + " / " + wiseSaying.author + " / " + wiseSaying.content);
                     }
+                }
+            } else if (cmd.startsWith("삭제?id=")) {
+                String idStr = cmd.substring(6);
+                int id = Integer.parseInt(idStr);
+
+                if(id > 0 && id <= lastId && wiseSayings[id] != null) {
+                    wiseSayings[id] = null;
+                    System.out.println(id + "번 명언이 삭제되었습니다.");
+                } else {
+                    System.out.println(id + "번 명언은 존재하지 않습니다.");
+                }
+            } else if(cmd.startsWith("수정?id=")) {
+                String idStr = cmd.substring(6);
+                int id = Integer.parseInt(idStr);
+
+                if(id > 0 && id <= lastId && wiseSayings[id] != null) {
+                    System.out.println("명언(기존) : " + wiseSayings[id].content);
+                    System.out.print("명령) ");
+                    String newContent = scanner.nextLine();
+
+                    System.out.println("작가(기존) : " + wiseSayings[id].author);
+                    System.out.print("명령) ");
+                    String newAuthor = scanner.nextLine();
+
+                    wiseSayings[id].content = newContent;
+                    wiseSayings[id].author = newAuthor;
+                } else {
+                    System.out.println(id + "번 명언은 존재하지 않습니다.");
                 }
             }
         }
